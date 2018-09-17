@@ -1,15 +1,15 @@
 import numpy as np
 
 
-def sigmoid_theory(x):
+def sigmoid(x):
     return 1.0 / (1.0 + np.exp(-x))
 
 
-def sigmoid(x):
+def sigmoid2(x):
     try:
         iter(x)
     except TypeError:
-        return sigmoid_theory(x)
+        return sigmoid(x)
     else:
         ret = []
         for item in x:

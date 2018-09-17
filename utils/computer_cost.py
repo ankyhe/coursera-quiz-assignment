@@ -2,6 +2,7 @@ import numpy as np
 
 from utils import sigmoid
 
+epsilon = 1e-5
 
 def computer(X, Y, theta):
     m = Y.size
@@ -11,16 +12,22 @@ def computer(X, Y, theta):
 
 def compute2(x, y, theta):
     m = y.size
+    h = sigmoid.sigmoid(x.dot(theta))
+    j = -1 * (1 / m) * (np.log(h + epsilon).T.dot(y) + np.log(1 - h + epsilon).T.dot(1 - y))
+    return j[0]
 
-    a = 1 - sigmoid.sigmoid(x.dot(theta))
-    b = sigmoid.sigmoid(x.dot(theta))
 
+def compute3(x, y, theta):
+    m = y.size
     value = x.dot(theta)
     v = 1.0
     for idx, item in enumerate(y):
-        if item == 0:
+        if item == 1:
             v *= sigmoid.sigmoid(value[idx, 0])
         else:
             v *= (1 - sigmoid.sigmoid(value[idx, 0]))
 
-    return -np.log(v) / m
+    ret = -np.log(v) / m
+    if np.isnan(ret):
+        return np.inf
+    return ret
