@@ -1,5 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
 
 from utils import load_data, plot_data, computer_cost
 
