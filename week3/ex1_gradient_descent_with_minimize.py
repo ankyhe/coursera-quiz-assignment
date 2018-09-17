@@ -21,6 +21,10 @@ def gradient(theta, X, y):
     return (grad.flatten())
 
 
+def predict(score1, score2, theta):
+    return sigmoid.sigmoid(np.array([1, score1, score2]).dot(theta.reshape(3, -1)).sum())
+
+
 def main():
     X, y, origin_X = load_data.load_and_process('data1.txt')
     initial_theta = np.zeros(X.shape[1])
@@ -60,11 +64,12 @@ def main():
                        'show': False
                    })
 
-    theta_from_cal = np.array([-4.81180027, 0.04528064, 0.03819149]) # 10 0000
-    theta_from_cal_2 = np.array([-15.39517866, 0.12825989, 0.12247929]) # 100 0000
+    theta_from_cal = np.array([-4.81180027, 0.04528064, 0.03819149]) # 0.001 10 0000
+    theta_from_cal_2 = np.array([-15.39517866, 0.12825989, 0.12247929]) # 0.001 100 0000
+    theta_from_cal_3 = np.array([-22.21628108, 0.18268725, 0.17763448]) # 0.003 100 0000
     score3 = []
     for item in score1:
-        score3.append(((0.5 - theta_from_cal_2[0]) - theta_from_cal_2[1] * item) / theta_from_cal_2[2])
+        score3.append(((0.5 - theta_from_cal_3[0]) - theta_from_cal_3[1] * item) / theta_from_cal_3[2])
     score3 = np.array(score3)
     plot_data.plot(score1, score3, 'score1', 'score2',
                    {
@@ -73,6 +78,8 @@ def main():
                        'legend_loc': 'upper right',
                        'show': True
                    })
+
+    print(predict(45, 85, theta_from_cal_3))
 
 
 if __name__ == '__main__':

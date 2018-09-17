@@ -17,7 +17,7 @@ def gradient_descent(x, y, alpha, iteration):
 
 def main():
     x, y, origin_x = load_data.load_and_process('data1.txt')
-    alpha = 0.001
+    alpha = 0.003
     iterations = 1000000
     theta, j_list = gradient_descent(x, y, alpha, iterations)
     print(theta)
