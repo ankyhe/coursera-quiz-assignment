@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 
 
-def plot(X, Y, x_label, y_label, opts):
+def plot(X, Y, x_label, y_label, opts = None):
     opts = opts or {}
     fmt = opts.get('fmt', 'ro')
     title = opts.get('title', '')
