@@ -18,8 +18,8 @@ def gradient_descent(X, Y, alpha, iteration):
 def main():
     X_normalize, Y_normalize, Origin_X_normalize, Y_mean, Y_std, Origin_X_mean, Origin_X_std = load_data.load_and_normalize('data2.txt')
 
-    alpha = 0.023
-    iterations = 400
+    alpha = 0.024
+    iterations = 800
     theta, j_list = gradient_descent(X_normalize, Y_normalize, alpha, iterations)
     print('The linear regression formula is {0} + {1} * x1 + {2} * x2'.format(theta[0, 0], theta[1, 0], theta[2,0]))
 
@@ -34,8 +34,8 @@ def main():
     house_size = 1650
     br_num = 3
 
-    house_size_normal = (house_size - Origin_X_mean[0]) / Origin_X_mean[0]
-    br_num = (br_num - Origin_X_mean[1]) / Origin_X_mean[1]
+    house_size_normal = (house_size - Origin_X_mean[0]) / Origin_X_std[0]
+    br_num = (br_num - Origin_X_mean[1]) / Origin_X_std[1]
 
     X_new_normalize = np.array([1, house_size_normal, br_num])
     price_normalize = X_new_normalize.dot(theta).sum()
