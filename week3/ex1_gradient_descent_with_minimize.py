@@ -5,20 +5,19 @@ from utils import computer_cost, sigmoid, load_data, plot_data
 
 epsilon = 1e-5
 
+
 def cost_function(theta, X, y):
     m = y.size
     h = sigmoid.sigmoid(X.dot(theta))
     J = -1 * (1 / m) * (np.log(h + epsilon).T.dot(y) + np.log(1 - h + epsilon).T.dot(1 - y))
-    if np.isnan(J[0]):
-        return (np.inf)
-    return (J[0])
+    return J[0]
 
 
 def gradient(theta, X, y):
     m = y.size
     h = sigmoid.sigmoid(X.dot(theta.reshape(-1, 1)))
     grad = (1 / m) * X.T.dot(h - y)
-    return (grad.flatten())
+    return grad.flatten()
 
 
 def predict(score1, score2, theta):

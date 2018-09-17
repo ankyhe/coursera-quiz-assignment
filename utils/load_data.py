@@ -4,9 +4,9 @@ import os
 from utils import normalize
 
 
-def load(filename, print_original_data = False):
+def load(filename, dtype = float, print_original_data = False):
     file_path = os.path.join('data', filename)
-    ret = np.loadtxt(file_path, delimiter=',')
+    ret = np.loadtxt(file_path, dtype = dtype, delimiter = ',')
     if print_original_data:
         print('raw data from file is\n{0}'.format(ret))
     return ret
