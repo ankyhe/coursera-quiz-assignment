@@ -1,6 +1,8 @@
 import numpy as np
 import os
 
+from scipy.io import loadmat
+
 from utils import normalize
 
 
@@ -35,3 +37,10 @@ def load_and_normalize(filename):
     X_normalize, X_mean, X_std = normalize.normalize(X)
     Y_normalize, Y_mean, Y_std = normalize.normalize(Y)
     return np.column_stack((ones, X_normalize)), Y_normalize, X_normalize, Y_mean, Y_std, X_mean, X_std
+
+
+def load_mat(filename):
+    if not filename.endswith('.mat'):
+        filename = '{0}.mat'.format(filename)
+    file_path = os.path.join('data', filename)
+    return loadmat(file_path)
