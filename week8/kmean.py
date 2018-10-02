@@ -4,7 +4,6 @@ import numpy as np
 from utils import load_data, plot_data
 
 
-
 def load():
     data = load_data.load_mat('ex7data2.mat')
     return data['X']
